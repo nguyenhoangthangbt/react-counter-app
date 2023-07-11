@@ -2,6 +2,7 @@ import { Component } from "react";
 import "./App.css";
 import Counters from "./components/counters";
 import NavBar from "./components/navbar";
+import Pagination from "./components/pagination";
 class App extends Component {
   state = {
     counters: [
@@ -15,9 +16,9 @@ class App extends Component {
 
   handleReset = () => {
     const m_counters = [...this.state.counters];
-    m_counters.forEach(c => c.value = 0)
-    this.setState({ counters: m_counters })
-  }
+    m_counters.forEach((c) => (c.value = 0));
+    this.setState({ counters: m_counters });
+  };
   handleDelete = (counterID) => {
     console.log(`handleDelete=(${counterID})`);
     const counters2 = this.state.counters.filter(
@@ -27,7 +28,6 @@ class App extends Component {
   };
 
   updateCount = (sign, counter) => {
-
     const m_counters = this.state.counters;
     const id = m_counters.indexOf(counter);
     m_counters[id] = { ...counter };
@@ -36,19 +36,27 @@ class App extends Component {
   };
 
   get_total_qty = () => {
-    const tot = this.state.counters.filter(i => i.value>0).length;
+    const tot = this.state.counters.filter((i) => i.value > 0).length;
     this.setState({ total_value: tot });
   };
 
   render() {
     return (
-      <div className="App" >
-        <NavBar getCount={this.state.counters.filter(i => i.value>0).length} getSum={this.state.counters.reduce((sum,i) => sum + i.value,0)}/>
-        <Counters counters={this.state.counters} onDelete={this.handleDelete} onUpdate={this.updateCount} onReset={this.handleReset} />
+      <div className="App">
+        <NavBar
+          getCount={this.state.counters.filter((i) => i.value > 0).length}
+          getSum={this.state.counters.reduce((sum, i) => sum + i.value, 0)}
+        />
+        <Counters
+          counters={this.state.counters}
+          onDelete={this.handleDelete}
+          onUpdate={this.updateCount}
+          onReset={this.handleReset}
+        />
+        <Pagination />
       </div>
     );
   }
-
 }
 
 export default App;
