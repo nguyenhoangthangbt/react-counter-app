@@ -14,6 +14,7 @@ class Pagination extends Component {
             <a class="page-link" href="#">
               1
             </a>
+            
           </li>
           <li class="page-item">
             <a class="page-link" href="#">
@@ -26,7 +27,7 @@ class Pagination extends Component {
             </a>
           </li>
           <li class="page-item">
-            <a class="page-link" href="#">
+            <a class="page-link" >
               Next
             </a>
           </li>
